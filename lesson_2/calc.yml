@@ -1,0 +1,5 @@
+# Calculator prompts
+
+welcome: Welcome to the Calculator App
+integer: Please enter an integer.
+error: Try again, buddy.
