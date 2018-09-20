@@ -44,4 +44,35 @@ def reverse_words(sentence)
     end
   end.join(" ")
 end
+
+## Question 7 ##
+def stringy(num)
+  string = ''
+  num.times { |count| count.even? ?  string << '1' : string << '0' }
+  return string
+end
+
+## Question 8 ##
+def average(nums)
+  sum = 0
+  nums.each {|num| sum += num}
+  sum / nums.count
+end
+
+## Question 9 ##
+def sum(number)
+  sum = 0
+  number.to_s.split('').each {|digit| sum += digit.to_i}
+  sum
+end
+
+def sum2(number)
+  number.to_s.chars.map(&:to_i).reduce(:+)
+end
+
+## Question 10 ##
+def calculate_bonus(salary, bool)
+  bool ? salary * 0.5 : 0
+end
+
 binding.pry
