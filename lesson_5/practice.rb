@@ -94,3 +94,60 @@ arr_new = arr.map do |num_array|
   num_array.reject { |num| num % 3 != 0 }
 end
 p arr_new
+
+## Question 12 ##
+arr = [[:a, 1], ['b', 'two'], ['sea', {c: 3}], [{a: 1, b: 2, c: 3, d: 4}, 'D']]
+hsh = {}
+arr.each do |item|
+  hsh[item[0]] = item[1]
+end
+p hsh
+
+## Question 13 ##
+arr = [[1, 6, 7], [1, 4, 9], [1, 8, 3]]
+arr.sort! do |a, b|
+  a.select { |x| x.odd? }.inject(&:+) <=>
+  b.select { |x| x.odd? }.inject(&:+)
+end
+
+p arr
+
+## Question 14 ##
+hsh = {
+  'grape' => {type: 'fruit', colors: ['red', 'green'], size: 'small'},
+  'carrot' => {type: 'vegetable', colors: ['orange'], size: 'medium'},
+  'apple' => {type: 'fruit', colors: ['red', 'green'], size: 'medium'},
+  'apricot' => {type: 'fruit', colors: ['orange'], size: 'medium'},
+  'marrow' => {type: 'vegetable', colors: ['green'], size: 'large'},
+}
+
+arr = []
+hsh.each_value do |info|
+  arr << info[:colors].map {|x| x.capitalize } if info[:type] == 'fruit'
+  arr << info[:size].upcase if info[:type] == 'vegetable'
+end
+
+p arr
+
+## Question 15 ##
+arr = [{a: [1, 2, 3]}, {b: [2, 4, 6], c: [3, 6], d: [4]}, {e: [8], f: [6, 10]}]
+
+arr.select! do |hash|
+  hash.values.all? do |num_array|
+    num_array.all? { |x| x.even? }
+  end
+end
+
+p arr
+
+## Question 16 ##
+def uuid_generator
+  set = (0..9).to_a + ('a'..'z').to_a
+  uuid =""
+  uuid << set.sample(8).join + "-"
+  3.times {uuid << set.sample(4).join + "-"}
+  uuid << set.sample(12).join
+  uuid
+end
+
+p uuid_generator
