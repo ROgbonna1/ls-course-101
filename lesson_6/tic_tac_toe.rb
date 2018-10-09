@@ -75,7 +75,7 @@ loop do
   user_move(user_selection, game_board)
   break if !!winner(game_board) || tie_conditions(game_board)
   prompt "CPU's turn!..."
-  sleep 1
+  sleep 0.5
   cpu_move(game_board)
 end
 
