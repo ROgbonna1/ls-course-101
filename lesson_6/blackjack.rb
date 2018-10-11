@@ -30,27 +30,33 @@ def card_value(card) # returns the value all cards except aces
   end
 end
 
-def sum_aces(hand) # if an 11 will bust, returns a 1
-  ace_count = hand.count { |card| card[0] == "a" }
-  return 0 if ace_count == 0
-  poss_point_combos =
-    ([11] * ace_count + [1] * ace_count).combination(ace_count).to_a.uniq
-  poss_point_combos.delete_if do |combo|
-    (combo.sum + sum_non_aces(hand)) > 21
-  end
-  return ace_count if poss_point_combos.empty?
-  best_combo = poss_point_combos.min_by do |combo|
-    21 - (combo.sum + sum_non_aces(hand))
-  end
-  best_combo.sum
-end
-
 def sum_non_aces(hand) # uses both value methods to return a total
   total = 0
   hand.select { |card| card[0] != "a" }.each do |card|
     total += card_value(card)
   end
   total
+end
+
+def ace_count(hand)
+  hand.count { |card| card[0] == "a" }
+end
+
+def ace_combos(hand)
+  points = ([11] * ace_count(hand) + [1] * ace_count(hand))
+  point_combos = points.combination(ace_count(hand)).to_a.uniq
+  point_combos.delete_if do |combo|
+    (combo.sum + sum_non_aces(hand)) > 21
+  end
+end
+
+def sum_aces(hand) # if an 11 will bust, returns a 1
+  return 0 if ace_count(hand) == 0
+  return ace_count if ace_combos(hand).empty?
+  best_combo = ace_combos(hand).min_by do |combo|
+    21 - (combo.sum + sum_non_aces(hand))
+  end
+  best_combo.sum
 end
 
 def sum_total(hand) # uses both value methods to return a total
