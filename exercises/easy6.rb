@@ -39,5 +39,61 @@ def find_fibonacci_index_by_length(length)
   end
   count
 end
-binding.pry
-puts "50#{DEGREES}"
+
+## Question 4 ##
+def reverse!(arr)
+  ref_array = arr.dup
+  length = ref_array.length
+  for i in 1..length do
+    arr << ref_array[length - i]
+  end
+  length.times {arr.shift}
+  arr
+end
+
+## Question 5 ##
+def reverse(arr)
+  ref_array = arr.dup
+  arr.each_with_index.map do |_, index|
+    ref_array[ref_array.length - (index + 1)]
+  end
+end
+
+## Question 6 ##
+def merge(arr1, arr2)
+  (arr1 + arr2).flatten.uniq
+end
+
+## Question 7 ##
+def halvsies(arr)
+  arr1 = []
+  arr2 = []
+  arr.each_with_index do |x, i|
+    i + 1 <= ((arr.length + 1) / 2) ? arr1 << x : arr2 << x
+  end
+  [arr1, arr2]
+end
+
+## Question 8 ##
+def find_dup(arr)
+  arr.detect do |x|
+    arr.count(x) == 2
+  end
+end
+
+## Question 9 ##
+def include?(arr, arg)
+  arr.any? { |x| x == arg }
+end
+
+## Question 10 ##
+def triangle(size)
+  height = 0
+  loop do
+    print " " * (size - height)
+    print "*" * (height)
+    print "\n"
+    height += 1
+    break if height > size
+  end
+end
