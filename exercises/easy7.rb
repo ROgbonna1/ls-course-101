@@ -91,4 +91,23 @@ def multiply_list(arr1, arr2)
   new
 end
 
+## Question 9 ##
+def multiply_all_pairs(arr1, arr2)
+  new_arr = []
+  arr1.each_with_index do |num, i|
+    arr2.each do |num2|
+      new_arr << num2 * num
+    end
+  end
+  new_arr.sort
+end
+
+def multiply_all_pairs(arr1, arr2)
+  arr1.product(arr2).map { |combo| combo.inject(&:*) }.sort
+end
+
+## Question 10 ##
+def penultimate(phrase)
+  phrase.split[-2]
+end
 puts "hi"
