@@ -59,3 +59,19 @@ p spin_words("This is another test") == "This is rehtona test"
   - join and return the sentence
 =end
 
+color = "purple"
+
+loop do |color|
+  color = "orange"
+  break
+end
+
+puts color
+
+def is_prime?(num)
+  return false if num == 1
+  (2..(num - 1)).to_a.none? { |x| num % x == 0 }
+end
+
+binding.pry
+puts "hi"
